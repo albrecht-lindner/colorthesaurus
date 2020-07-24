@@ -1,142 +1,175 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Color Thesaurus - beta version</title>
-<!--database scripts-->
-	<script type="text/javascript" src="./taffy.js"></script>
-	<script type="text/javascript" src="./colorValues.js"></script>
-	<script type="text/javascript" src="./colorNames.js"></script>
-	<script type="text/javascript" src="./colorDB.js"></script>
-	<script type="text/javascript" src="./initDB.js"></script>
-	
-	<script type="text/javascript" src="./liveSearch.js"></script>
-<!--fancy box stuff-->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-	<script type="text/javascript" src="./fancybox/jquery.fancybox.js"></script>
-	<link rel="stylesheet" type="text/css" href="./fancybox/jquery.fancybox.css" media="screen" />
-	<script>
-		$(document).ready(function() {
-			$("a#inline").fancybox({
-				'hideOnContentClick': true
-			});
-		});
-	</script>
-	
-<!--fonts-->
-	<link href='https://fonts.googleapis.com/css?family=Cabin+Condensed:400' rel='stylesheet' type='text/css'>
-	
-<!--css-->
-	<link rel="stylesheet" type="text/css" href="./ColorThesaurus.css" />
-	
-<!--color picker-->
-	<script type="text/javascript" src="./raphael.js"></script>
-	<script type="text/javascript" src="./colorpicker.js"></script>
-	<script type="text/javascript" src="./colorwheel.js"></script>
-	<script>
-		Raphael(function () {
-			// this is where colorpicker created
-				cp = Raphael.colorpicker(450, 10, 150, "#eee"),
-				cp2 = Raphael.colorwheel(620, 10, 150, "#eee"),
-				
-				clr = Raphael.color("#eee");
-				
-			// assigning onchange event handler
-			var onchange = function (item) {
-				return function (clr) {
-					item.color(clr);
-					clr = Raphael.color(clr);
-					displayColorRGB(clr.r, clr.g, clr.b);
-				};
-			};
-			cp.onchange = onchange(cp2);
-			cp2.onchange = onchange(cp);
-			
-//			cp.update = function(hex){
-//				this.color(Raphael.getRGB("#" + hex));
-//			};
-		});
-//		cp.update("#dc7134");
-	</script>
-</head>
-<body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Color Thesaurus</title>
+    <!--database scripts-->
+    <script type="text/javascript" src="./taffy.js"></script>
+    <script type="text/javascript" src="./colorValues.js"></script>
+    <script type="text/javascript" src="./colorNames.js"></script>
+    <script type="text/javascript" src="./colorDB.js"></script>
+    <script type="text/javascript" src="./initDB.js"></script>
 
-<form class="searchform">
-<input class="searchfield" id="searchfield" type="text" onkeyup="showResult(this.value)" placeholder="search color by name" action="javascript:void(0);" onKeyPress="return checkKey(event);"/>
-<div class="searchresult" id="searchresult"></div>
-</form>
+    <script type="text/javascript" src="./liveSearch.js"></script>
+    <!--fancy box stuff-->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"
+    ></script>
+    <script type="text/javascript" src="./fancybox/jquery.fancybox.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./fancybox/jquery.fancybox.css"
+      media="screen"
+    />
+    <script>
+      $(document).ready(function () {
+        $("a#inline").fancybox({
+          hideOnContentClick: true,
+        });
+      });
+    </script>
 
+    <!--fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Cabin+Condensed:400"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-<!--info on current color-->
-<div class="distframe">
-	<div class="colorinfo" id="colorinfo_div">
-		<table class="colorinfo" id="colorinfo_table">
-		</table>
-	</div>
-</div>
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="./ColorThesaurus.css" />
 
-<!--neighboring colors of the same language-->
-<div class="distframe">
-	<div class="neighborinfo" id="neighborinfo_div">
-		<table  id="neighbors" width="100%">
-		</table>
-	</div>
-</div>
+    <!--color picker-->
+    <script type="text/javascript" src="./raphael.js"></script>
+    <script type="text/javascript" src="./colorpicker.js"></script>
+    <script type="text/javascript" src="./colorwheel.js"></script>
+    <script>
+      Raphael(function () {
+        // this is where colorpicker created
+        (cp = Raphael.colorpicker(450, 10, 150, "#eee")),
+          (cp2 = Raphael.colorwheel(620, 10, 150, "#eee")),
+          (clr = Raphael.color("#eee"));
 
-<!--similar colors of other languages-->
-<div class="distframe">
-	<div class="neighborinfo" id="similarinfo_div">
-		<table  id="similar" width="100%">
-		</table>
-	</div>
-</div>
+        // assigning onchange event handler
+        var onchange = function (item) {
+          return function (clr) {
+            item.color(clr);
+            clr = Raphael.color(clr);
+            displayColorRGB(clr.r, clr.g, clr.b);
+          };
+        };
+        cp.onchange = onchange(cp2);
+        cp2.onchange = onchange(cp);
 
-<!--history-->
-<div class="distframe">
-	<div class="neighborinfo" id="history_div">
-		History:
-		<table  id="history">
-		</table>
-	</div>
-</div>
+        //			cp.update = function(hex){
+        //				this.color(Raphael.getRGB("#" + hex));
+        //			};
+      });
+      //		cp.update("#dc7134");
+    </script>
+  </head>
+  <body>
+    <form class="searchform">
+      <input
+        class="searchfield"
+        id="searchfield"
+        type="text"
+        onkeyup="showResult(this.value)"
+        placeholder="search color by name"
+        action="javascript:void(0);"
+        onKeyPress="return checkKey(event);"
+      />
+      <div class="searchresult" id="searchresult"></div>
+    </form>
 
-<!--start first color-->
-<script>
-	displayColor(53802);
-	document.getElementById("searchfield").value = "";
-</script>
+    <!--info on current color-->
+    <div class="distframe">
+      <div class="colorinfo" id="colorinfo_div">
+        <table class="colorinfo" id="colorinfo_table"></table>
+      </div>
+    </div>
 
-<!--opens fancy frame with "about" info.-->
-<div class="info">
-	<table class="info">
-			<a class="info" id="inline" href="#about">about</a>
-	</table>
-</div>
+    <!--neighboring colors of the same language-->
+    <div class="distframe">
+      <div class="neighborinfo" id="neighborinfo_div">
+        <table id="neighbors" width="100%"></table>
+      </div>
+    </div>
 
-<!--hidden div box with about text. gets displayed in a fancybox-->
-<div style="display:none">
-	<div id="about">
-		<p>
-			This color thesaurus is one part of the PhD thesis work of <a href="http://ivrg.epfl.ch/people/lindner" class="about">Albrecht Lindner</a>.
-		</p>
-		<p>
-			You can find more details on the respective <a href="http://ivrg.epfl.ch/ColorThesaurus" class="about">research page</a>.
-		</p>
-		<p>
-			If you are using (parts of) this work, please cite the respective <a href="http://infoscience.epfl.ch/record/181682" class="about">publication</a>:<br>
-			<TT>
-				Albrecht Lindner, Bryan Zhi Li, Nicolas Bonnier, and Sabine S&uuml;sstrunk,<br>
-				A Large-Scale Multi-Lingual Color Thesaurus, IS&T Color and Imaging Conference, 2012.
-			</TT>
-		</p>
-		<p>
-			This research is conducted in the <a href="http://ivrg.epfl.ch/" class="about">IVRG</a> lab at <a href="http://epfl.ch/" class="about">EPFL, Switzerland</a> and sponsored by <a href="http://www.oce.com/" class="about">Oce/Canon, Paris</a>.
-		</p>
-		<p>
-			Special thanks goes to XKCD as their <a href="http://blog.xkcd.com/2010/05/03/color-survey-results/" class="about">English Color Survey</a> inspired us to do this project.
-		</p>
-	</div>
-</div>
+    <!--similar colors of other languages-->
+    <div class="distframe">
+      <div class="neighborinfo" id="similarinfo_div">
+        <table id="similar" width="100%"></table>
+      </div>
+    </div>
 
-</body>
+    <!--history-->
+    <div class="distframe">
+      <div class="neighborinfo" id="history_div">
+        History:
+        <table id="history"></table>
+      </div>
+    </div>
+
+    <!--start first color-->
+    <script>
+      displayColor(53002);
+      document.getElementById("searchfield").value = "";
+    </script>
+
+    <!--opens fancy frame with "about" info.-->
+    <div class="info">
+      <table class="info">
+        <a class="info" id="inline" href="#about">about</a>
+      </table>
+    </div>
+
+    <!--hidden div box with about text. gets displayed in a fancybox-->
+    <div style="display: none;">
+      <div id="about">
+        <p>
+          This color thesaurus is one part of the PhD thesis work of
+          <a href="http://ivrg.epfl.ch/people/lindner" class="about"
+            >Albrecht Lindner</a
+          >.
+        </p>
+        <p>
+          You can find more details on the respective
+          <a href="http://ivrg.epfl.ch/ColorThesaurus" class="about"
+            >research page</a
+          >.
+        </p>
+        <p>
+          If you are using (parts of) this work, please cite the respective
+          <a href="http://infoscience.epfl.ch/record/181682" class="about"
+            >publication</a
+          >:<br />
+          <tt>
+            Albrecht Lindner, Bryan Zhi Li, Nicolas Bonnier, and Sabine
+            S&uuml;sstrunk,<br />
+            A Large-Scale Multi-Lingual Color Thesaurus, IS&T Color and Imaging
+            Conference, 2012.
+          </tt>
+        </p>
+        <p>
+          This research is conducted in the
+          <a href="http://ivrg.epfl.ch/" class="about">IVRG</a> lab at
+          <a href="http://epfl.ch/" class="about">EPFL, Switzerland</a> and
+          sponsored by
+          <a href="http://www.oce.com/" class="about">Oce/Canon, Paris</a>.
+        </p>
+        <p>
+          Special thanks goes to XKCD as their
+          <a
+            href="http://blog.xkcd.com/2010/05/03/color-survey-results/"
+            class="about"
+            >English Color Survey</a
+          >
+          inspired us to do this project.
+        </p>
+      </div>
+    </div>
+  </body>
 </html>
