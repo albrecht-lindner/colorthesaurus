@@ -1,0 +1,100 @@
+body {
+	font-family: 'Cabin Condensed', sans-serif;
+	background: #707070;
+	hideOnContentClick: false;
+	z-index:0;
+}
+td.rightalign{
+	text-align: right;
+	border-right: 1px solid white;
+	padding: 0px 10px 0px 0px;
+}
+td.leftalign{
+	text-align: left;
+	padding: 0px 0px 0px 10px;
+}
+
+td.colorpatch{
+	height: 20px;
+	border: 1px solid black;
+	border-radius:5px;
+	cursor: pointer;
+	padding: 3px;
+}
+td.colorpatch:hover{
+	-webkit-box-shadow: 2px 2px 4px 1px;
+	box-shadow: 0px 0px 4px 1px;
+}
+div.colorinfo{
+	border:2px solid #ffffff;
+	padding:10px 40px; 
+	background:#dddddd;
+	width:300px;
+	border-radius:5px;
+	-moz-border-radius:5px; /* Firefox 3.6 and earlier */
+}
+div.neighborinfo{
+	border:2px solid #ffffff;
+	padding:10px 40px; 
+	background:#dddddd;
+	width:92%;
+	border-radius:5px;
+	-moz-border-radius:5px; /* Firefox 3.6 and earlier */
+}
+table.colorinfo{
+	border-collapse: collapse;
+	font-size:large;
+	width:300px;
+}
+div.distframe{
+	border: 10px solid #707070;
+}
+div.info{
+	padding:0px 20px; 
+	background:#dddddd;
+	border-radius:0px 0px 0px 10px;
+	-moz-border-radius:10px; /* Firefox 3.6 and earlier */
+	line-height: 36px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 1000;
+}
+form.searchform{
+	position: absolute;
+	left: 800px;
+	top: 50px;
+	z-index:999;
+	placeholder:"Email Address";
+}
+input.searchfield{
+	autocomplete:off;
+	width:200px;
+}
+div.searchresult{
+	border:none;
+	width:200px;
+}
+div.searchitem{
+	border:none;
+	width:100%;
+	cursor:pointer;
+}
+div.searchitem:hover{
+	font-weight:bold;
+}
+#about{
+	color: #090909;
+}
+:link{
+	color: #000000;
+}
+:visited{
+	color: #000000;
+}
+hr {
+	border: 0;
+	color: black;
+	background-color: black;
+	height: 1px;
+}
